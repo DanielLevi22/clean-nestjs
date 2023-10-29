@@ -1,6 +1,5 @@
 @base = http://localhost:3333
-
-
+@token = {{ authenticate.response.body.access_token }}
 # @name create_account
 POST {{base}}/accounts
 Content-Type: application/json
@@ -10,9 +9,11 @@ Content-Type: application/json
   "email": "user1@email.com",
   "password": "123456"
 }
+
+
 ###
 
-
+# @name Authenticate
 POST {{base}}/sessions
 Content-Type: application/json
 
@@ -20,3 +21,23 @@ Content-Type: application/json
   "email": "user1@email.com",
   "password": "123456"
 }
+
+
+###
+# @name Create_question
+
+POST {{base}}/questions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjNDRjNTQ1Zi0xN2I1LTRjMWUtYTExZi1mZTgxNGNlYzA1ZTQiLCJpYXQiOjE2OTg1OTQ2Mzh9.iRC8FJRvu0OPAIF9-iXc9A0y6_dSmVcnDgW8fJhv6LYoKhvEb9Sq0uBLaZY3xwmyVHW9t5FSbd4tIG2qvsNfF3Q3_Vk_gfT0dhqWFZxpr0Y1QRjDZ0Kn-_fU_olndK9llRF9mJMFiQ85HWaoiyJjkDXpEsJwLH3pBOY1RiLdPN_WM8huRyfiwzqe00e6-tydtP6g20yfZcjNJog2fzvLOeP4VRH5qMkgM1pv9KaAb4JLh-kl2XKGQJmRvBUNrJcxOGn1OZxU9IlVJTWEbLlGuD1tJEx3Ch6JCz80GjHO3IiPwrKql2ZMk6tx8pF8nripOuPilKVm7yNjG7sPpyO5cA
+
+{
+  "title": "Qual a sua cor favoritaaa?",
+  "content": "Estou fazendo uma pesquisa sobre cores"
+}
+
+###
+# @name Fetch_questions
+
+GET   {{base}}/questions?page=2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjNDRjNTQ1Zi0xN2I1LTRjMWUtYTExZi1mZTgxNGNlYzA1ZTQiLCJpYXQiOjE2OTg1OTQ2Mzh9.iRC8FJRvu0OPAIF9-iXc9A0y6_dSmVcnDgW8fJhv6LYoKhvEb9Sq0uBLaZY3xwmyVHW9t5FSbd4tIG2qvsNfF3Q3_Vk_gfT0dhqWFZxpr0Y1QRjDZ0Kn-_fU_olndK9llRF9mJMFiQ85HWaoiyJjkDXpEsJwLH3pBOY1RiLdPN_WM8huRyfiwzqe00e6-tydtP6g20yfZcjNJog2fzvLOeP4VRH5qMkgM1pv9KaAb4JLh-kl2XKGQJmRvBUNrJcxOGn1OZxU9IlVJTWEbLlGuD1tJEx3Ch6JCz80GjHO3IiPwrKql2ZMk6tx8pF8nripOuPilKVm7yNjG7sPpyO5cA
